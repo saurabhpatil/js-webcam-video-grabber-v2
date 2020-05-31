@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ClikSource Video Profile</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/mdb.min.css" />
+</head>
+
+<body>
+  <div class="navbar navbar-expand-sm fixed-top p-0">
+    <div class="bigscr align-items-center box_shadow pl-custom-4 pr-custom-4">
+      <div class="navbar-brand"> <a class="" href="index.html"> <img src="images/logo.png" alt="Click Source">
+        </a>
+      </div>
+      <p class="mb-0 ml-auto"><span class="color_orange">Hello!</span> <span> John Doe</span> | john.doe@gmail.com</p>
+    </div>
+  </div>
+  <section class="bigscr videoprofile_container px-4">
+    <div class="col-lg-12 p-0">
+      <div class="row h-100 m-0">
+        <div
+          class="col-xl-2 col-lg-12 col-md-12 left_progress_menu py-xl-4 pt-md-4 pb-md-3 h_fit_content h-xl-100 px-0 pt-3 pb-2">
+          <ul class="m-0 p-0">
+            <li><span class="top_line"></span><span><img src="./images/start_green.svg" alt="start_green" /></span>
+              Getting Started</li>
+            <li class="m-0 active"><span class="top_line_2"></span><span><img src="./images/record_video_active.svg"
+                  alt="record_video_active" /></span> Record Video <br> <small>(upto 2 mins)</small><span
+                class="bottom_line_2"></span></li>
+            <li><span><img src="./images/submit_inactive.svg" alt="submit_inactive" /></span> Submit <span
+                class="bottom_line"></span></li>
+          </ul>
+        </div>
+        <div class="col-xl-10 col-lg-12 col-md-12 main_container px-xl-4 px-0">
+          <div class="recorder_wrap recorded">
+            <h3>Record Video Profile</h3>
+            <p>Do Mention about your Education, Work Experience, Major Milestones, Interesting Projects, etc..</p>
+            <div class="video_wrap play">
+              <img src="./images/video_img.png" alt="">
+            </div>
+            <div class="video_controls">
+              <div class="d-flex align-items-baseline">
+                <span class="perfect_icon"><img src="./images/noun_mic_2027315.svg" alt="noun_mic_2027315" /></span>
+                <span class="perfect_icon"><img src="./images/noun_video recording_3321500.svg"
+                    alt="noun_video recording_3321500" /></span>
+                <button class="control_btn ml-auto mr-0 px-2"><span><img src="./images/play_vdo.png" alt="play_vdo"
+                      class="mb-2"></span> <br> Play</button>
+                <button class="control_btn ml-2 mr-2 px-2" data-toggle="modal" data-target="#record_again"><span><img src="./images/retake_icon.png" alt="retake_icon"
+                      class="mb-2"></span> <br> Retake</button>
+                <button class="control_btn ml-0 mr-auto px-2 upload_btn navigatethis"
+                  data-navigate="submit.html"><span><img src="./images/noun_Check_45889.svg" alt="noun_Check_45889"
+                      class="mb-2"></span> <br> Submit</button>
+                <small>02:40</small>
+              </div>
+            </div>
+          </div>
+          <div id="upload_failed" class="notif notif-message">
+            Upload failed. Please try again
+            <span class="close_notif">&times;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="modal" id="record_again">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h5 class="modal-title">Are you sure you want record again?</h5>
+          <div class="text-right">
+            <button data-dismiss="modal" class="btn_secondary">No</button>
+            <button class="btn_primary ml-2">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/lib/jquery.min.js"></script>
+<script src="./js/lib/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".upload_btn").on("click", function () {
+      $(".notif-message").addClass("fadein");
+      setTimeout(function () {
+        $(".notif-message").removeClass("fadein");
+      }, 5000)
+    })
+    $(".close_notif").on("click", function () {
+      $(".notif-message").removeClass("fadein");
+    })
+    var url = window.location.href;
+    var the_arr = url.split('/');
+    the_arr.pop();
+    the_arr = the_arr.join('/')
+    $(".navigatethis").on("dblclick", function () {
+      var slug = $(this).attr("data-navigate");
+      window.location = the_arr + "/" + slug;
+    })
+
+  })
+</script>
+
+</html>

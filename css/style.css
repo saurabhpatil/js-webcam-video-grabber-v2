@@ -1,0 +1,667 @@
+@font-face {
+  font-family: "Gotham-Medium";
+
+  src: url("../fonts/Gotham-Medium.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/Gotham-Medium.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gotham-Bold";
+
+  src: url("../fonts/Gotham-Bold.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/Gotham-Bold.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gotham-Book";
+
+  src: url("../fonts/Gotham-Book.woff") format("woff"),
+    /* Modern Browsers */ url("../fonts/Gotham-Book.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Gotham-Book" !important;
+}
+.navbar,
+.navbar .box_shadow {
+  box-shadow: unset !important;
+}
+input[type="checkbox"] ~ label,
+input[type="checkbox"] ~ div {
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar .bigscr {
+  background-color: #fff;
+  padding: 10px 20px;
+}
+.bigscr {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  vertical-align: middle;
+}
+.navbar {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06) !important;
+}
+.navbar .navbar-brand img {
+  max-width: 350px;
+}
+.navbar p {
+  font-size: 12px;
+  font-family: "Gotham-Book";
+  color: #515468;
+  margin-left: auto;
+}
+.navbar p span {
+  font-family: "Gotham-Medium" !important;
+}
+.color_orange {
+  color: #f25832;
+}
+button:disabled,
+button[disabled]{
+  /* border: 1px solid #999999; */
+  background-color: #cccccc;
+  color: #666666;
+}
+.btn_primary {
+  background-color: #f25832;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 6px 18px;
+  border-radius: 2px;
+  border: none;
+  font-family: "Gotham-Medium";
+  letter-spacing: 0.4px;
+}
+.btn_secondary {
+  color: #f25832;
+  border: 1px solid #f25832;
+  padding: 6px 18px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: Gotham-Medium;
+  letter-spacing: 0.4px;
+  background-color: #fff;
+}
+body{
+  background-color: #f8f8f8;
+}
+.videoprofile_container {
+  height: 100%;
+  padding-top: 66px;
+  min-height: 100vh;
+}
+.left_progress_menu {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+}
+.left_progress_menu ul {
+  list-style: none;
+}
+.left_progress_menu .top_line,
+.left_progress_menu .top_line_2,
+.left_progress_menu .bottom_line {
+  display: block;
+}
+.left_progress_menu .top_line {
+  height: 20px;
+  width: 1px;
+  position: relative;
+  left: 8px;
+  background-color: #dcdde5;
+  margin-bottom: 5px;
+}
+.left_progress_menu .bottom_line {
+  height: 20px;
+  width: 1px;
+  position: relative;
+  left: 8px;
+  background-color: #dcdde5;
+  margin-bottom: 5px;
+  bottom: -8px;
+}
+.left_progress_menu .top_line_2 {
+  height: 40px;
+  width: 1px;
+  position: relative;
+  left: 8px;
+  background-color: #dcdde5;
+  margin-bottom: 5px;
+}
+.left_progress_menu .bottom_line_2 {
+  height: 40px;
+  width: 1px;
+  position: relative;
+  left: 8px;
+  background-color: #dcdde5;
+  margin-bottom: 5px;
+  bottom: 10px;
+  display: table-cell;
+}
+.left_progress_menu ul li {
+  font-size: 16px;
+  color: #747588;
+  font-family: "Gotham-Medium";
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+.left_progress_menu ul li.active {
+  color: #f9683d;
+  position: relative;
+}
+.left_progress_menu ul li.active::before {
+  content: "";
+  width: 4px;
+  height: 30px;
+  background-color: #f25832;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 36%;
+}
+.left_progress_menu ul li:last-child.active {
+  color: #747588 !important;
+}
+.left_progress_menu ul li:last-child.active::before {
+  background-color: transparent !important;
+}
+.left_progress_menu ul li small {
+  margin-left: 27px;
+  font-size: 10px;
+  color: #acaec1;
+  font-family: "Gotham-Book";
+  display: block;
+}
+.left_progress_menu ul li.active svg g#CS_VideoProfile_1_new {
+  fill: #f25832;
+}
+.left_progress_menu ul li img {
+  margin-right: 5px;
+}
+.main_container h4 {
+  color: #515468;
+  font-size: 16px;
+  font-family: "Gotham-Medium";
+  margin-bottom: 12px;
+}
+.vp_summary {
+  border: solid 0.5px #eaebf1;
+  background-color: #ffffff;
+}
+.vp_summary .vp_s_indvi {
+  text-align: center;
+  padding: 20px;
+}
+.vp_summary .vp_s_indvi h3 {
+  color: #232333;
+  font-size: 17px;
+  font-family: "Gotham-Medium";
+  margin-bottom: 4px;
+  margin-top: 15px;
+}
+.vp_summary .vp_s_indvi p {
+  margin: 0;
+  color: #acaec1;
+  font-family: "Gotham-Book";
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.vp_summary .tip_yellow {
+  display: flex;
+  margin: 0;
+  background-color: #fffae8c7;
+  color: #232333;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.vp_summary .checkbox_wrap_img {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/noun_Checkbox_1126732_1.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-width: 14px;
+}
+.vp_summary input[type="checkbox"]:checked ~ .checkbox_wrap_img {
+  background-image: url("../images/noun_Checkbox_1126732.svg");
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-width: 14px;
+}
+.vp_summary .form_group label {
+  font-size: 12px;
+  color: #515468;
+}
+.vp_summary .form_group label a {
+  color: #515468;
+  border-bottom: 1px dotted;
+}
+.vp_instructions {
+  border: solid 0.5px #eaebf1;
+  background-color: #ffffff;
+  padding: 20px;
+}
+.vp_instructions ul {
+  list-style: none;
+}
+.vp_instructions li {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #515468;
+  display: flex;
+}
+.vp_instructions li::before {
+  content: "●";
+  color: #f25832;
+  margin-right: 10px;
+  font-size: 12px;
+}
+.recorder_wrap {
+  max-width: 80%;
+  margin: 0 auto;
+  border: solid 0.5px #eaebf1;
+  background-color: #ffffff;
+}
+.recorder_wrap h3 {
+  color: #232333;
+  font-size: 18px;
+  padding: 30px 5rem 0;
+  font-family: "Gotham-Medium";
+}
+.recorder_wrap > p {
+  padding: 0 5rem 30px;
+  margin: 0;
+  color: #747588;
+  font-size: 14px;
+}
+.recorder_wrap .video_wrap {
+  text-align: center;
+  background-color: #ffffff;
+  position: relative;
+  padding: 0 5rem;
+}
+.recorder_wrap .video_wrap video {
+  max-width: 100%;
+}
+.recorder_wrap .video_wrap video {
+  width: 100%;
+  height: 100%;
+  background-color: #212529;
+}
+.video_controls{
+  padding: 0 5rem;
+}
+.video_controls > div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 25px 0 30px;
+}
+.video_controls > div > span {
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+}
+/* .video_controls > div > span.perfect_icon::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: solid 0.5px #ffffff;
+  background-color: #3ec82c;
+  top: -1px;
+  right: -1px;
+  border-radius: 50%;
+} */
+.video_controls .control_btn_grp,
+.video_controls .control_btn
+ {
+  margin: 0 auto;
+  background-color: transparent !important;
+  color: #818293;
+  border: none;
+  padding: 8px 24px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: Gotham-Medium;
+}
+.control_btn img{
+  width: 40px;
+}
+.video_controls > div > small {
+  color: #747588;
+  font-size: 14px;
+}
+.recorder_wrap .video_wrap .recording_label {
+  position: absolute;
+  top: 10px;
+  right: 20%;
+  position: absolute;
+  top: 10px;
+  right: 10%;
+  font-size: 10px;
+  background-color: #00000057;
+  color: #fff;
+  padding: 2px 8px;
+  text-transform: uppercase;
+}
+.recorder_wrap .video_wrap .recording_label::before {
+  content: "●";
+  color: #d73939;
+  margin-right: 5px;
+  font-size: 12px;
+}
+.recorder_wrap.recorded {
+  position: relative;
+}
+.record_again {
+  color: #f25832;
+  border: 1px solid #f25832;
+  padding: 6px 18px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: Gotham-Medium;
+}
+.uplad_btn {
+  color: #fff;
+  border: none;
+  background-color: #f25832;
+  padding: 6px 18px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: Gotham-Medium;
+}
+.modal .modal-title {
+  font-size: 18px;
+  font-family: "Gotham-Medium";
+  color: #545454;
+  margin-bottom: 20px;
+}
+.modal-dialog {
+  top: 35%;
+  transform: translate(0, -50%);
+}
+.video_wrap.play::before {
+  content: url(../images/play.svg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.thankyou_wrap {
+  border: solid 0.5px #eaebf1;
+  background-color: #ffffff;
+}
+.thankyou_wrap h3 {
+  color: #232333;
+  font-size: 18px;
+  font-family: "Gotham-Medium";
+}
+.thankyou_wrap p {
+  color: #747588;
+  font-size: 14px;
+}
+.thankyou_wrap p:last-child{
+  opacity: .6;
+}
+.notif-message {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  color: #fff;
+  background-color: #d50000;
+  font-size: 14px;
+  padding: 4px 14px;
+  border-radius: 30px;
+  opacity: 0;
+}
+.notif-message.fadein{
+  opacity: 1;
+}
+.close_notif{
+  margin-left: 10px;
+  cursor: pointer;
+}
+.general_instruc p{
+  color: #515468;
+  font-size: 14px;
+  font-family: "Gotham-Medium";
+  width: fit-content;
+  margin: 0 auto;
+}
+.general_instruc p img{
+  height: 20px;
+  margin-top: -4px;
+  margin-right: 5px;
+}
+.line_one{
+  margin: 0;
+  position: absolute;
+  width: 31%;
+  top: 50%;
+  border: .5px solid #dcdde5;
+}
+.line_two{
+  margin: 0;
+  position: absolute;
+  width: 31%;
+  top: 50%;
+  right: 0;
+  border: .5px solid #dcdde5;
+}
+.gen_ins_wrap{
+  color: #232333;
+  font-size: 13px;
+  border-radius: 2px;
+  background-color: rgba(234, 235, 241, 0.46);
+  padding: 6px 12px;
+  margin: 0 10px 14px 0;
+}
+.general_instruc button{
+  color: #232333;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid #acaec1;
+  border-radius: 2px;
+  outline: none;
+  padding: 6px 20px;
+}
+#howtorecord .modal-dialog{
+  max-width: 650px;
+}
+#howtorecord .modal-dialog{
+  top: 0;
+}
+#howtorecord .modal-header{
+  padding: 10px 24px;
+}
+.modal .modal-title{
+  color: #232333;
+  font-size: 16px;
+}
+#howtorecord .modal-body{
+  padding: 15px 24px;
+  max-height: calc(100vh - 25vh);
+  overflow-y: scroll;
+}
+#howtorecord .modal-body h4{
+  color: #f25832;
+  font-size: 16px;
+  font-family: "Gotham-Medium";
+}
+#howtorecord .modal-body ul{
+  padding-left: 10px;
+  list-style: none;
+}
+#howtorecord .modal-body li{
+  font-size: 14px;
+  color: #232333;
+  font-family: "Gotham-Book";
+  margin-bottom: 6px;
+}
+#howtorecord .modal-body li::before{
+  content: "●";
+  margin-right: 10px;
+    font-size: 10px;
+    color: #232333;
+}
+/* ipad pro */
+@media(max-width: 1366px){
+  .general_instruc{
+    padding: 0 !important;
+  }
+  .recorder_wrap .video_wrap .recording_label{
+    right: 11%;
+  }
+}
+@media (max-width: 1024px) {
+  .h_fit_content {
+    height: fit-content;
+  }
+  .left_progress_menu ul {
+    display: flex;
+  }
+  .left_progress_menu li::before {
+    background-color: transparent !important;
+  }
+  .left_progress_menu li .top_line,
+  .left_progress_menu li .top_line_2,
+  .left_progress_menu li .bottom_line,
+  .left_progress_menu li .bottom_line_2 {
+    display: none;
+  }
+  .general_instruc button{
+    margin: 10px auto 0 !important;
+  }
+  .gen_ins_wrap{
+    width: 100% !important;
+  }
+  .recorder_wrap .video_wrap .recording_label{
+    right: 12% !important;
+  }
+  .videoprofile_container{
+    min-height: unset;
+  }
+}
+@media (max-width: 768px) {
+  .vp_summary .vp_s_indvi h3,
+  .recorder_wrap h3 {
+    font-size: 14px;
+  }
+  .vp_summary .form_group label,
+  .vp_instructions li,
+  .recorder_wrap > p {
+    font-size: 12px;
+  }
+  .vp_s_indvi img {
+    height: 20px;
+  }
+  .vp_s_indvi h3 img {
+    width: 20px;
+  }
+  .recorder_wrap,
+  .recorder_wrap .video_wrap img {
+    max-width: 100%;
+  }
+  .video_controls > div {
+    width: 100%;
+    padding: 25px 15px;
+  }
+  .recorder_wrap.recorded::after {
+    top: 15px;
+  }
+  .video_controls button {
+    font-size: 12px;
+  }
+  .recorder_wrap .video_wrap .recording_label{
+    right: 12% !important;
+  }
+}
+@media (max-width: 576px) {
+  .navbar-brand img {
+    max-width: 240px !important;
+  }
+  .left_progress_menu li {
+    display: none;
+  }
+  .left_progress_menu li.active {
+    display: block;
+  }
+  .control_btn img{
+    width: 30px !important;
+  }
+  .videoprofile_container{
+    padding-top: 60px;
+  }
+  .vp_summary .vp_s_indvi{
+    padding: 20px 4px !important;
+  }
+  .general_instruc button{
+    font-size: 12px;
+    width: 100%;
+  }
+  .recorder_wrap h3{
+    padding: 15px 15px 0 ;
+  }
+  .recorder_wrap > p{
+    padding: 0 15px 15px ;
+  }
+  .recorder_wrap .video_wrap, .video_controls{
+    padding: 0 15px;
+  }
+  .video_controls > div > button{
+    font-size: 12px !important;
+  }
+  .video_controls > div > button img{
+    max-width: 40px;
+  }
+  .recorder_wrap .video_wrap .recording_label{
+    right: 6% !important;
+  }
+  .navbar p{
+    display: none;
+  }
+  .line_one,.line_two{
+    display: none;
+  }
+}
+@media (max-width: 375px) {
+  .vp_summary .vp_s_indvi h3{
+    font-size: 12px;
+  }
+  .navigatethis.w-75{
+    width: 100% !important;
+  }
+  .video_controls > div{
+    padding: 20px 0;
+  }
+  .video_controls > div > span{
+    margin-right: 10px;
+  }
+  .video_controls > div > button{
+    margin:  0!important;
+  }
+}
+@media only screen and (min-device-width: 480px) 
+                   and (max-device-width: 640px) 
+                   and (orientation: landscape) {
+                    .recorder_wrap .video_wrap .recording_label{
+                      right: 15% !important;
+                    }
+                   }

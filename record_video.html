@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ClikSource Video Profile</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/mdb.min.css" />
+</head>
+
+<body>
+  <div class="navbar navbar-expand-sm fixed-top p-0">
+    <div class="bigscr align-items-center box_shadow pl-custom-4 pr-custom-4">
+      <div class="navbar-brand"> <a class="" href="index.html"> <img src="images/logo.png" alt="Click Source">
+        </a>
+      </div>
+      <p class="mb-0 ml-auto"><span class="color_orange">Hello!</span> <span> John Doe</span> | john.doe@gmail.com</p>
+    </div>
+  </div>
+  <section class="bigscr videoprofile_container px-4">
+    <div class="col-lg-12 p-0">
+      <div class="row h-100 m-0">
+        <div class="col-xl-2 col-lg-12 col-md-12 left_progress_menu py-xl-4 pt-md-4 pb-md-3 h_fit_content h-xl-100 px-0 pt-3 pb-2">
+          <ul class="m-0 p-0">
+            <li><span class="top_line"></span><span><img src="./images/start_green.svg" alt="start_green" /></span> Getting Started</li>
+            <li class="m-0 active"><span class="top_line_2"></span><span><img src="./images/record_video_active.svg" alt="record_video_active" /></span> Record Video <br> <small>(upto 2 mins)</small><span class="bottom_line_2"></span></li>
+            <li><span><img src="./images/submit_inactive.svg" alt="submit_inactive" /></span> Submit <span class="bottom_line"></span></li>
+          </ul>
+        </div>
+        <div class="col-xl-10 col-lg-12 col-md-12 main_container px-xl-4 px-0">
+          <div class="recorder_wrap">
+            <h3>Record Video Profile</h3>
+            <p>Tips: Start with a quick introduction and talk about work experience, major milestones, Interesting projects, etc. </p>
+            <div class="video_wrap">
+              <video playsinline oncontextmenu="return false;"></video>
+            </div>
+            <div class="video_controls">
+              <div class="d-flex align-items-baseline">
+                <span class="perfect_icon"><img id="mic_status" src="./images/noun_mic_2027315.svg" alt="Mic Icon" /></span>
+                <span class="perfect_icon"><img id="video_status" src="./images/noun_video recording_3321500.svg" alt="Video Icon" /></span>
+                <button id="start-record" class="control_btn"> <span><img src="./images/rec_icon.png" alt="rec_icon" width="50" class="pb-2" /></span> <br> Start Recording</button>
+                <button id="stop-record" class="control_btn" style="display:none"><span><img src="./images/stop_icon.png" alt="stop_icon" width="50" class="pb-2" /></span> <br>Stop Recording</button>
+
+                <div id="confirm-record" class="control_btn_grp" style="display:none">
+                  <button id="play-video" class="control_btn ml-auto mr-0 px-2">
+                    <span><img src="./images/play_vdo.png" alt="play_vdo" class="mb-2"></span><br>
+                     Play
+                  </button>
+                  <button id="record-again" class="control_btn ml-2 mr-2 px-2">
+                    <span><img src="./images/retake_icon.png" alt="retake_icon" class="mb-2"></span><br>
+                     Retake
+                  </button>
+                  <button id="submit-video" class="control_btn ml-0 mr-auto px-2 upload_btn">
+                    <span><img src="./images/noun_Check_45889.svg" alt="noun_Check_45889" class="mb-2"></span><br> 
+                     Submit
+                  </button>
+                </div>
+                <small id="record_time">00:00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="webcam-error" class="notif notif-message">
+          Unable to access camera and mic
+          <span class="close_notif">&times;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+<script src="./js/lib/jquery.min.js"></script>
+<script src="./js/lib/bootstrap.min.js"></script>
+<script src="./js/lib/recordrtc.js"></script>
+<script src="./js/lib/moment.min.js"></script>
+
+<script>
+  var camera, video, recorder, recorderTimer, totalRecordedDuration;
+  var videoPlayer = document.querySelector('video');
+  var maxRecordingDuration = 120; // 2 mins
+
+  var base_url = location.pathname.split('/').slice(0, -1).join('/');
+  
+  $(document).ready(function(){
+    document.getElementById('start-record').onclick = function() {
+      startRecording();
+    }
+
+    document.getElementById('stop-record').onclick = function() {
+      recorder.stopRecording(stopRecording);
+    };
+    
+    document.getElementById('play-video').onclick = function() {
+      videoPlayer.play();
+    };
+
+    initializeWebcam();
+  });
+
+  function navigate(page) {
+    window.location = base_url + page;
+  }
+  
+  function initializeWebcam() {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true, video: true })
+      .then(function(webcam) {
+          camera = webcam;
+          videoPlayer.muted = true;
+          videoPlayer.volume = 0;
+          videoPlayer.srcObject = camera;
+          videoPlayer.play();
+      })
+      .catch(function(error) {
+          // alert('Unable to access your camera. Please check the device.');
+          document.getElementById('mic_status').src = "./images/error_mic.svg"
+          document.getElementById('video_status').src = "./images/error_video.svg"
+          console.error(error);
+          
+          $(".notif-message").addClass("fadein");
+          setTimeout(function () {
+            $(".notif-message").removeClass("fadein");
+          }, 5000)
+
+          document.getElementById('start-record').onclick = null;
+      });
+  }
+
+  function startRecording() {
+    document.getElementById("start-record").style.display = "none";
+    document.getElementById("stop-record").style.display = "block";
+
+    recorder = RecordRTC(camera, {
+        type: 'video'
+    });
+
+    recorder.camera = camera;
+    recorder.startRecording();
+    startVideoCountdown();
+  }
+
+  function stopRecording() {
+    document.getElementById("stop-record").style.display = "none";
+    document.getElementById("confirm-record").style.display = "block";
+
+    videoPlayer.src = videoPlayer.srcObject = null;
+    videoPlayer.muted = false;
+    videoPlayer.volume = 1;
+    videoPlayer.src = recorder.toURL();
+
+    video = recorder.getBlob();
+
+    document.getElementById("record_time").innerHTML = moment(totalRecordedDuration*1000).format("mm:ss");
+    clearInterval(recorderTimer);
+  }
+
+  function startVideoCountdown() {
+    var timerCountDown = maxRecordingDuration;
+    totalRecordedDuration = 0;
+
+    recorderTimer = setInterval(function(){
+      if(timerCountDown <= 0) {
+        recorder.stopRecording(stopRecording);
+        clearInterval(recorderTimer);
+      }
+      var timer = moment(timerCountDown*1000).format("mm:ss")
+      document.getElementById("record_time").innerHTML = timer;
+      timerCountDown -= 1; totalRecordedDuration += 1;
+    }, 1000);
+  }
+
+
+  document.getElementById('record-again').onclick = function() {
+    document.getElementById("confirm-record").style.display = "none";
+    document.getElementById("stop-record").style.display = "block";
+
+    videoPlayer.muted = true;
+    videoPlayer.volume = 0;
+    videoPlayer.srcObject = camera;
+    videoPlayer.play();
+
+    recorder.reset();
+    recorder.startRecording();
+    startVideoCountdown();
+  };
+
+
+  document.getElementById('submit-video').onclick = function() {
+    var current_date = moment().format('MM_DD_YYYY_H_mm_ss');
+    
+    recorder.save('Portfolio_Video_Capture_'+current_date+'.webm');
+    recorder.camera.stop();
+    recorder.destroy();
+
+    window.location = base_url+"/submit.html"
+
+    console.log("Successfully downloaded profile video!");
+  }
+</script>
+</html>
