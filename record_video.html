@@ -38,6 +38,7 @@
             <div class="video_wrap">
               <!-- Video Display -->
               <video playsinline oncontextmenu="return false;"></video>
+              <span id="video-text">Recording...</span>
             </div>
             <div class="video_controls">
               <div class="d-flex align-items-baseline">
@@ -116,36 +117,41 @@
         document.getElementById('play-video-img').src = "./images/play_vdo.png"
         document.getElementById('play-video-label').innerHTML = "Play"
       }
-
-      // Retake video button click
-      document.getElementById('record-again').onclick = function() {
-        document.getElementById("confirm-record").style.display = "none";
-        document.getElementById("stop-record").style.display = "block";
-        document.getElementById('play-video-img').src = "./images/play_vdo.png"
-
-        videoPlayer.muted = true;
-        videoPlayer.volume = 0;
-        videoPlayer.srcObject = camera;
-        videoPlayer.play();
-
-        recorder.reset();
-        recorder.startRecording();
-        startVideoCountdown();
-      };
-
-      // Submit video button click
-      document.getElementById('submit-video').onclick = function() {
-        var current_date = moment().format('MM_DD_YYYY_H_mm_ss');
-        
-        recorder.save('Portfolio_Video_Capture_'+current_date+'.webm');
-        recorder.camera.stop();
-        recorder.destroy();
-
-        window.location = base_url+"/submit.html"
-
-        console.log("Successfully downloaded profile video!");
-      }
     };
+
+    // Retake video button click
+    document.getElementById('record-again').onclick = function() {
+      document.getElementById("confirm-record").style.display = "none";
+      document.getElementById("stop-record").style.display = "block";
+      document.getElementById('video-text').style.display = "block";
+      document.getElementById('play-video-img').src = "./images/play_vdo.png";
+
+      videoPlayer.muted = true;
+      videoPlayer.volume = 0;
+      videoPlayer.srcObject = camera;
+      videoPlayer.play();
+
+      recorder.reset();
+      recorder.startRecording();
+      startVideoCountdown();
+    };
+
+    // Submit video button click
+    document.getElementById('submit-video').onclick = function() {
+      var current_date = moment().format('MM_DD_YYYY_H_mm_ss');
+      
+      recorder.save('Portfolio_Video_Capture_'+current_date+'.webm');
+      recorder.camera.stop();
+      recorder.destroy();
+
+      window.location = base_url+"/submit.html"
+      console.log("Successfully downloaded profile video!");
+    }
+
+    videoPlayer.onended = function() {
+      document.getElementById('play-video-img').src = "./images/play_vdo.png";
+      document.getElementById('play-video-label').innerHTML = "Play";
+    }
 
     initializeWebcam();
   });
@@ -192,6 +198,7 @@
   function startRecording() {
     document.getElementById("start-record").style.display = "none";
     document.getElementById("stop-record").style.display = "block";
+    document.getElementById('video-text').style.display = "block";
 
     recorder = RecordRTC(camera, {
         type: 'video'
@@ -204,6 +211,7 @@
 
   // Stop recording video callback
   function stopRecording() {
+    document.getElementById('video-text').style.display = "none";
     document.getElementById("stop-record").style.display = "none";
     document.getElementById("confirm-record").style.display = "block";
 
