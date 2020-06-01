@@ -36,29 +36,36 @@
             <h3>Record Video Profile</h3>
             <p>Tips: Start with a quick introduction and talk about work experience, major milestones, Interesting projects, etc. </p>
             <div class="video_wrap">
+              <!-- Video Display -->
               <video playsinline oncontextmenu="return false;"></video>
             </div>
             <div class="video_controls">
               <div class="d-flex align-items-baseline">
                 <span class="perfect_icon"><img id="mic_status" src="./images/noun_mic_2027315.svg" alt="Mic Icon" /></span>
                 <span class="perfect_icon"><img id="video_status" src="./images/noun_video recording_3321500.svg" alt="Video Icon" /></span>
+                <!-- Start Recording Video -->
                 <button id="start-record" class="control_btn"> <span><img src="./images/rec_icon.png" alt="rec_icon" width="50" class="pb-2" /></span> <br> Start Recording</button>
+                <!-- Stop Recording Video -->
                 <button id="stop-record" class="control_btn" style="display:none"><span><img src="./images/stop_icon.png" alt="stop_icon" width="50" class="pb-2" /></span> <br>Stop Recording</button>
 
                 <div id="confirm-record" class="control_btn_grp" style="display:none">
+                  <!-- Play/Pause Video -->
                   <button id="play-video" class="control_btn ml-auto mr-0 px-2">
-                    <span><img src="./images/play_vdo.png" alt="play_vdo" class="mb-2"></span><br>
-                     Play
+                    <span><img id="play-video-img" src="./images/play_vdo.png" alt="play_vdo" class="mb-2"></span><br>
+                    <span id="play-video-label">Play</span>
                   </button>
+                  <!-- Retake Video -->
                   <button id="record-again" class="control_btn ml-2 mr-2 px-2">
                     <span><img src="./images/retake_icon.png" alt="retake_icon" class="mb-2"></span><br>
                      Retake
                   </button>
+                  <!-- Submit Video -->
                   <button id="submit-video" class="control_btn ml-0 mr-auto px-2 upload_btn">
                     <span><img src="./images/noun_Check_45889.svg" alt="noun_Check_45889" class="mb-2"></span><br> 
                      Submit
                   </button>
                 </div>
+                <!-- Video Recording Timer -->
                 <small id="record_time">00:00</small>
               </div>
             </div>
@@ -85,29 +92,80 @@
 
   var base_url = location.pathname.split('/').slice(0, -1).join('/');
   
+  // Initial page setup
   $(document).ready(function(){
+    
+    //Start recording button click
     document.getElementById('start-record').onclick = function() {
       startRecording();
     }
 
+    // Stop recording button click
     document.getElementById('stop-record').onclick = function() {
       recorder.stopRecording(stopRecording);
     };
     
+    // Play video button click
     document.getElementById('play-video').onclick = function() {
-      videoPlayer.play();
+      if(videoPlayer.paused) {
+        videoPlayer.play();
+        document.getElementById('play-video-img').src = "./images/pause_ic.svg"
+        document.getElementById('play-video-label').innerHTML = "Pause"
+      } else {
+        videoPlayer.pause();
+        document.getElementById('play-video-img').src = "./images/play_vdo.png"
+        document.getElementById('play-video-label').innerHTML = "Play"
+      }
+
+      // Retake video button click
+      document.getElementById('record-again').onclick = function() {
+        document.getElementById("confirm-record").style.display = "none";
+        document.getElementById("stop-record").style.display = "block";
+        document.getElementById('play-video-img').src = "./images/play_vdo.png"
+
+        videoPlayer.muted = true;
+        videoPlayer.volume = 0;
+        videoPlayer.srcObject = camera;
+        videoPlayer.play();
+
+        recorder.reset();
+        recorder.startRecording();
+        startVideoCountdown();
+      };
+
+      // Submit video button click
+      document.getElementById('submit-video').onclick = function() {
+        var current_date = moment().format('MM_DD_YYYY_H_mm_ss');
+        
+        recorder.save('Portfolio_Video_Capture_'+current_date+'.webm');
+        recorder.camera.stop();
+        recorder.destroy();
+
+        window.location = base_url+"/submit.html"
+
+        console.log("Successfully downloaded profile video!");
+      }
     };
 
     initializeWebcam();
   });
 
+  // Navigate to specified html page
   function navigate(page) {
     window.location = base_url + page;
   }
   
+  // Initial access to webcam and mic
   function initializeWebcam() {
     navigator.mediaDevices
-      .getUserMedia({ audio: true, video: true })
+      .getUserMedia({ 
+        audio: true, 
+        video: {
+          width: { min: 1024, ideal: 1280, max: 1920 },
+          height: { min: 576, ideal: 720, max: 1080 },
+          facingMode: "user"
+        }
+      })
       .then(function(webcam) {
           camera = webcam;
           videoPlayer.muted = true;
@@ -130,6 +188,7 @@
       });
   }
 
+  // Start recording video
   function startRecording() {
     document.getElementById("start-record").style.display = "none";
     document.getElementById("stop-record").style.display = "block";
@@ -143,6 +202,7 @@
     startVideoCountdown();
   }
 
+  // Stop recording video callback
   function stopRecording() {
     document.getElementById("stop-record").style.display = "none";
     document.getElementById("confirm-record").style.display = "block";
@@ -158,6 +218,7 @@
     clearInterval(recorderTimer);
   }
 
+  // Start video coundown timer
   function startVideoCountdown() {
     var timerCountDown = maxRecordingDuration;
     totalRecordedDuration = 0;
@@ -171,34 +232,6 @@
       document.getElementById("record_time").innerHTML = timer;
       timerCountDown -= 1; totalRecordedDuration += 1;
     }, 1000);
-  }
-
-
-  document.getElementById('record-again').onclick = function() {
-    document.getElementById("confirm-record").style.display = "none";
-    document.getElementById("stop-record").style.display = "block";
-
-    videoPlayer.muted = true;
-    videoPlayer.volume = 0;
-    videoPlayer.srcObject = camera;
-    videoPlayer.play();
-
-    recorder.reset();
-    recorder.startRecording();
-    startVideoCountdown();
-  };
-
-
-  document.getElementById('submit-video').onclick = function() {
-    var current_date = moment().format('MM_DD_YYYY_H_mm_ss');
-    
-    recorder.save('Portfolio_Video_Capture_'+current_date+'.webm');
-    recorder.camera.stop();
-    recorder.destroy();
-
-    window.location = base_url+"/submit.html"
-
-    console.log("Successfully downloaded profile video!");
   }
 </script>
 </html>

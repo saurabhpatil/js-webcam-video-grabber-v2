@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>pause_ic</title>
+    <g id="Video-Profile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CS_VideoProfile_2c" transform="translate(-680.000000, -547.000000)" fill="#0A7BE0">
+            <path d="M706.95788,547 C721.8689,547 734,559.04686 734,573.95788 C734,588.8689 721.8689,601 706.95788,601 C692.04686,601 680,588.8689 680,573.95788 C680,559.04686 692.04686,547 706.95788,547 Z M698.95508,563.00614 L704.262254,563.00614 L704.262254,584.9944 L698.95508,584.9944 L698.95508,563.00614 Z M709.65356,563.00614 L714.960734,563.00614 L714.960734,584.9944 L709.65356,584.9944 L709.65356,563.00614 Z" id="pause_ic"></path>
+        </g>
+    </g>
+</svg>
