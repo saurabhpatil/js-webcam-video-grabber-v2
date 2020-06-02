@@ -95,11 +95,6 @@
   
   // Initial page setup
   $(document).ready(function(){
-    
-    //Start recording button click
-    document.getElementById('start-record').onclick = function() {
-      startRecording();
-    }
 
     // Stop recording button click
     document.getElementById('stop-record').onclick = function() {
@@ -122,8 +117,7 @@
     // Retake video button click
     document.getElementById('record-again').onclick = function() {
       document.getElementById("confirm-record").style.display = "none";
-      document.getElementById("stop-record").style.display = "block";
-      document.getElementById('video-text').style.display = "block";
+      document.getElementById("start-record").style.display = "block";
       document.getElementById('play-video-img').src = "./images/play_vdo.png";
 
       videoPlayer.muted = true;
@@ -132,8 +126,6 @@
       videoPlayer.play();
 
       recorder.reset();
-      recorder.startRecording();
-      startVideoCountdown();
     };
 
     // Submit video button click
@@ -163,6 +155,7 @@
   
   // Initial access to webcam and mic
   function initializeWebcam() {
+    document.getElementById('start-record').onclick = null;
     navigator.mediaDevices
       .getUserMedia({ 
         audio: true, 
@@ -178,6 +171,16 @@
           videoPlayer.volume = 0;
           videoPlayer.srcObject = camera;
           videoPlayer.play();
+          
+          recorder = RecordRTC(camera, {
+              type: 'video'
+          });
+          recorder.camera = camera;
+
+          //Start recording button click
+          document.getElementById('start-record').onclick = function() {
+            startRecording();
+          }
       })
       .catch(function(error) {
           // alert('Unable to access your camera. Please check the device.');
@@ -189,8 +192,6 @@
           setTimeout(function () {
             $(".notif-message").removeClass("fadein");
           }, 5000)
-
-          document.getElementById('start-record').onclick = null;
       });
   }
 
@@ -200,11 +201,6 @@
     document.getElementById("stop-record").style.display = "block";
     document.getElementById('video-text').style.display = "block";
 
-    recorder = RecordRTC(camera, {
-        type: 'video'
-    });
-
-    recorder.camera = camera;
     recorder.startRecording();
     startVideoCountdown();
   }
